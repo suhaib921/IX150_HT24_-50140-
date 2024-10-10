@@ -1,0 +1,10 @@
+Cracked 100-bit RSA in 1.7754 seconds.
+Cracked 110-bit RSA in 1.2068 seconds.
+Cracked 120-bit RSA in 2.2104 seconds.
+Cracked 130-bit RSA in 0.3446 seconds.
+Cracked 140-bit RSA in 23.1459 seconds.
+Cracked 150-bit RSA in 23.6331 seconds.
+Cracked 160-bit RSA in 26.9525 seconds.
+Cracked 170-bit RSA in 118.2895 seconds.
+Cracked 180-bit RSA in 111.3844 seconds.
+Cracked 190-bit RSA in 846.8159 seconds.

@@ -1,0 +1,1066 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     41450,       1058]
+NotebookOptionsPosition[     26315,        757]
+NotebookOutlinePosition[     34094,        958]
+CellTagsIndexPosition[     34051,        955]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["III Graph Theory", "Title",ExpressionUUID->"c786d25d-7727-47a2-910e-861698cd9851"],
+
+Cell[TextData[{
+ "KTH/ICT:IX1500 - Discrete Mathematics, v1\nNiharika Gauraha\nOrginal \
+notebook by ",
+ StyleBox["G\[ODoubleDot]ran",
+  IgnoreSpellCheck->True],
+ " ",
+ StyleBox["Andersson",
+  IgnoreSpellCheck->True],
+ "\n"
+}], "Text",
+ CellMargins->{{27, 10}, {0, 0}},
+ FontFamily->"Times New Roman",
+ FontSize->10,ExpressionUUID->"c382ef1a-caca-486d-8027-e5a6a8532ebd"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["Section"],
+ ". Implementation and Assessment"
+}], "Section",ExpressionUUID->"d9e84f50-f9fc-4194-8382-08179de8e50b"],
+
+Cell["\<\
+The course includes two-three project tasks on a total of 4 hp. The projects \
+are assessed in writing and orally.  They will be given a summary grade in \
+scale A-F. The assessment includes the number of solved project tasks. The \
+first two projects are mandatory for grade C-E. The third project task is \
+optional and targets higher grades A-B and requires a grade C for the first \
+two projects. \
+\>", "Text",ExpressionUUID->"694f40f8-58c7-46c3-a93d-67e537c3213b"],
+
+Cell[TextData[{
+ "In this project task you will work alone and solve a mathematical task, \
+write a report in ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " and prepare a short oral presentation on your solution to the task."
+}], "Text",ExpressionUUID->"587a8926-683c-4a8b-bcab-334035b54a4b"],
+
+Cell["\<\
+Carefully read the following information so that you know which rules apply \
+and what is expected of you.\
+\>", "Text",ExpressionUUID->"bb7b6e74-d0a0-4969-b776-aab4b9953105"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["Section"],
+ ".",
+ 
+ CounterBox["Subsection"],
+ " Report"
+}], "Subsection",ExpressionUUID->"edbb4993-e6fd-41bc-9147-9086244e1c26"],
+
+Cell["The report should be written in Mathematica and contain", "Text",ExpressionUUID->"0eb3737e-e696-4313-a3ca-d6045ba32a64"],
+
+Cell["title and author of the report", "Item",ExpressionUUID->"1cc98e63-5883-4885-bc1c-00a7a8f93c73"],
+
+Cell["email@kth.se", "Item",ExpressionUUID->"5dd448b9-e66b-44d8-90f4-e27119e72424"],
+
+Cell["a summary containing the results of resolved parts", "Item",ExpressionUUID->"1c1ab6bc-6ea1-4c50-b4fe-e003fb8d800a"],
+
+Cell[CellGroupData[{
+
+Cell["separate sections for each part containing e.g.", "Item",ExpressionUUID->"ac573c7e-6d37-4d07-a793-44191a3ab0f1"],
+
+Cell["mathematical formulas and equations", "Subitem",ExpressionUUID->"7b1b98bf-a21e-413c-ab72-8892bf8ac154"],
+
+Cell["a brief discussion ", "Subitem",ExpressionUUID->"3534e7e5-cb49-46f2-9184-bb8c753a1ddf"],
+
+Cell["explanatory diagrams", "Subitem",ExpressionUUID->"8f3f5897-6855-4f4c-9ca4-dbb3a4d54b60"],
+
+Cell["your conclusions.", "Subitem",ExpressionUUID->"ec86d333-79e5-4710-a484-682c0d4263f1"]
+}, Open  ]],
+
+Cell["\<\
+separate code section (do not mix code and text with conclusions and results)\
+\>", "Item",ExpressionUUID->"89226e5e-c381-4680-bd34-5ea270d2b5ed"],
+
+Cell["\<\
+The report will normally be uploaded a couple of days prior to the \
+examination (see 1.5 below).\
+\>", "Text",ExpressionUUID->"58f14169-9159-4210-bbd6-e952a0c265a0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["Section"],
+ ".",
+ 
+ CounterBox["Subsection"],
+ " Oral Presentation"
+}], "Subsection",ExpressionUUID->"946e15b2-89f1-4106-b08c-e0a9bb9b3e22"],
+
+Cell[TextData[{
+ "You should prepare an oral presentation of your solution to the task. The \
+presentation will be carried out with your own laptop and ",
+ StyleBox["should not take more than five minutes",
+  FontSlant->"Italic"],
+ ", effective time. A computer projector will be available at the \
+presentation. Please carefully consider your presentation, what is important, \
+in what order and how it will be illustrated. Practice the presentation in \
+advance and make sure to meet the time frame. "
+}], "Text",ExpressionUUID->"23689776-c4ae-4efa-af05-a5095abde497"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["Section"],
+ ".",
+ 
+ CounterBox["Subsection"],
+ " Rules"
+}], "Subsection",ExpressionUUID->"fb44ae22-9864-4f2a-acc6-04116b33c257"],
+
+Cell[TextData[{
+ "The task is considered ",
+ StyleBox["individually",
+  FontSlant->"Italic"],
+ " and ",
+ StyleBox["assumes that you have full knowledge of all the material you are \
+presenting",
+  FontSlant->"Italic"],
+ ". In order to be approved, then you have solved the task and be able to \
+explain the entire task and solution. "
+}], "Text",ExpressionUUID->"2cf764b1-fcea-4b95-b0dc-11b405b87711"],
+
+Cell["\<\
+To account for the task that you do not have solved is considered cheating. \
+It is also cheating to copy the solution or part of a solution from another. \
+If two solutions are presented as (partially) copies they are rejected both. \
+\>", "Text",ExpressionUUID->"1f0de201-1228-44d8-b696-edbec728037d"],
+
+Cell["\<\
+If the solution contains parts, e.g. background material, which you do not \
+have produced, you must clearly indicate this and indicate the source.\
+\>", "Text",ExpressionUUID->"db2ffdbf-34ab-4686-97bd-21b26394dd76"],
+
+Cell["\<\
+Suspicion of cheating or misleading can be reported to the Disciplinary Board.\
+\>", "Text",ExpressionUUID->"a333f128-774a-4d88-a2a4-5fc154faa1f4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["Section"],
+ ".",
+ 
+ CounterBox["Subsection"],
+ " Examination"
+}], "Subsection",ExpressionUUID->"3fdb9388-e191-4ed9-b432-ba76ad90cff5"],
+
+Cell["\<\
+The examination is carried out according to the booking in canvas.\
+\>", "Item",ExpressionUUID->"3c17ee64-9fa5-4ea2-880b-0a146a64773b"],
+
+Cell["The booking is done according to information in Canvas.", "Item",ExpressionUUID->"a4d77b66-f197-41ae-9c4e-58ca9443a699"],
+
+Cell[TextData[{
+ "Please notice that this project should be reported in ",
+ StyleBox["by individual students",
+  FontWeight->"Bold"],
+ "."
+}], "Item",ExpressionUUID->"c83aaf75-29cd-47d8-8c01-2f2b230e625f"],
+
+Cell["\<\
+The report (including code section) should be uploaded according to the \
+information in Canvas.\
+\>", "Item",ExpressionUUID->"415114e5-9148-43ad-b3aa-d80634ec7328"],
+
+Cell["\<\
+The opposition report should be uploaded according to the information in \
+Canvas.\
+\>", "Item",ExpressionUUID->"c7c49a48-f06c-43bd-a1bd-c317a480ad22"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["Section"],
+ ". Preparations"
+}], "Section",ExpressionUUID->"94542b99-6865-4248-8f13-8e89b820e50e"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["Section"],
+ ".",
+ 
+ CounterBox["Subsection"],
+ " Study"
+}], "Subsection",ExpressionUUID->"4553e957-9eed-40da-8d92-78afaa691ddd"],
+
+Cell["Read and study the following texts:", "Text",ExpressionUUID->"0b7149d6-8029-4adb-8236-bcf21f1e2fe3"],
+
+Cell["Chapter 9 in the course book (B\[ODoubleDot]iers)", "Subitem",ExpressionUUID->"278184fd-d9da-44d7-9b42-ebccadd5ba17"],
+
+Cell["lecture notes F14-F17", "Subitem",ExpressionUUID->"2e15fb37-7de2-4a03-83a0-5bbcdc69a11e"],
+
+Cell["Relevant parts of the Mathematica reference", "Subitem",ExpressionUUID->"53cc053c-22b1-483e-b6f5-e8fe5f9d3b95"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["Section"],
+ ".",
+ 
+ CounterBox["Subsection"],
+ " Geographics example"
+}], "Subsection",ExpressionUUID->"99750f37-563e-447b-8b8e-d44af31cd217"],
+
+Cell["\<\
+The following describes how to use GeoGraphics in Mathematica\
+\>", "Text",ExpressionUUID->"557d0a2e-526f-4d52-ad22-992e9bcd4fac"],
+
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<`*\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.7164885194191227`*^9, 3.716488527462583*^9}},
+ CellLabel->
+  "In[172]:=",ExpressionUUID->"83666d55-ae42-4bb9-80f0-587992cbba30"],
+
+Cell["\<\
+Defining the cities and links between the cities. City number is given by the \
+index in the first list.\
+\>", "Text",
+ CellChangeTimes->{{3.810381337755228*^9, 
+  3.810381389345531*^9}},ExpressionUUID->"6606b3eb-9a7f-4a44-bd9a-\
+2c6b51d2820a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"city", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<Uppsala\>\"", ",", " ", "\"\<Stockholm\>\"", ",", " ", 
+     "\"\<Goteborg\>\"", ",", " ", "\"\<Malmo\>\""}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"links", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", " ", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", " ", "4"}], "}"}]}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.810379952332449*^9, 3.810379954693719*^9}, {
+  3.810380004789735*^9, 3.8103800668104*^9}, {3.8103803769131937`*^9, 
+  3.8103803796790133`*^9}},
+ CellLabel->
+  "In[173]:=",ExpressionUUID->"d8ed8ebd-bae0-4ad5-91c4-0a1af2d6b00f"],
+
+Cell["\<\
+Getting the geo coordinates for the cities by using the function CityData.\
+\>", "Text",
+ CellChangeTimes->{{3.810381392317318*^9, 
+  3.810381436158074*^9}},ExpressionUUID->"80a62418-7a1b-4cad-a447-\
+5ed3e771872a"],
+
+Cell[BoxData[
+ RowBox[{"\[DoubleStruckC]", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"CityData", "[", 
+     RowBox[{
+      RowBox[{"city", "\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}], 
+      ",", "\"\<Coordinates\>\""}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", 
+      RowBox[{"Length", "[", "city", "]"}]}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.810380547124302*^9, 3.810380557272292*^9}},
+ CellLabel->
+  "In[175]:=",ExpressionUUID->"b7f7a639-e00d-41c4-9cc0-1a09f23b1799"],
+
+Cell["\<\
+Describing the adjacency matrix for the links between the cities.\
+\>", "Text",
+ CellChangeTimes->{{3.81038143974682*^9, 
+  3.810381492046385*^9}},ExpressionUUID->"08707551-be0d-4488-96f7-\
+538cc984ae92"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[DoubleStruckCapitalA]", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", " ", "1", ",", " ", "0", ",", " ", "0"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", " ", "0", ",", " ", "1", ",", " ", "0"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", " ", "1", ",", " ", "0", ",", " ", "1"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", " ", "0", ",", " ", "1", ",", " ", "0"}], "}"}]}], 
+    "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.810380109954919*^9, 3.8103801302601023`*^9}, {
+  3.810380178151554*^9, 3.810380269399187*^9}},
+ CellLabel->
+  "In[176]:=",ExpressionUUID->"8bf321b0-9791-465b-807a-d50db67ca65f"],
+
+Cell[BoxData[
+ RowBox[{"\[ScriptCapitalG]", "=", 
+  RowBox[{"AdjacencyGraph", "[", "\[DoubleStruckCapitalA]", "]"}]}]], "Input",
+ CellLabel->
+  "In[177]:=",ExpressionUUID->"e0c38d4a-0e61-4be8-8a44-41e4b5942d26"],
+
+Cell["\<\
+Extracting the list of vertices and edges from the Graph representation.\
+\>", "Text",ExpressionUUID->"c3fccc00-730a-4f3c-9087-3d98aaf38cec"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"v", "=", 
+   RowBox[{"VertexList", "[", "\[ScriptCapitalG]", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"\[GothicCapitalE]", "=", 
+   RowBox[{"EdgeList", "[", "\[ScriptCapitalG]", "]"}]}], ";"}]}], "Input",
+ CellLabel->
+  "In[178]:=",ExpressionUUID->"89ef92cc-6d1a-4d60-b6d3-a9755e0ac6ca"],
+
+Cell["Setting the options for geoGraph function", "Text",
+ CellChangeTimes->{{3.81038121139933*^9, 
+  3.810381250336907*^9}},ExpressionUUID->"7ec7329d-7d3c-40dd-8247-\
+02ca2f42f253"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "geoGraph", "]"}], "=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"EdgeStyle", "\[Rule]", "Black"}], ",", 
+     RowBox[{"VertexStyle", "\[Rule]", 
+      RowBox[{"GeoStyling", "[", "None", "]"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"VertexLabels", "\[Rule]", "None"}], ",", 
+     RowBox[{"VertexLabelStyle", "\[Rule]", "Black"}]}], 
+    "\[IndentingNewLine]", "}"}]}], ";"}]], "Input",
+ CellLabel->
+  "In[180]:=",ExpressionUUID->"9d6bc572-79e8-42dc-99ac-b157a49c7521"],
+
+Cell["\<\
+Definition of the function geoGraph which results in a list with the geo-data \
+for the cities and links.\
+\>", "Text",ExpressionUUID->"2cea0918-6378-433b-9e69-1f5a8d3a68c1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"geoGraph", "[", 
+   RowBox[{"v_", ",", "e_", ",", "c_", ",", "r_", ",", 
+    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"es", "=", 
+       RowBox[{"OptionValue", "[", "EdgeStyle", "]"}]}], ",", 
+      RowBox[{"vs", "=", 
+       RowBox[{"OptionValue", "[", "VertexStyle", "]"}]}], ",", 
+      RowBox[{"vl", "=", 
+       RowBox[{"OptionValue", "[", "VertexLabels", "]"}]}], ",", 
+      RowBox[{"vls", "=", 
+       RowBox[{"OptionValue", "[", "VertexLabelStyle", "]"}]}], ",", 
+      "\[IndentingNewLine]", "lbl", ",", 
+      RowBox[{"\[CapitalDelta]", "=", 
+       RowBox[{"{", 
+        RowBox[{"0.1", ",", "0.3"}], "}"}]}]}], "\[IndentingNewLine]", "}"}], 
+    ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "[", "vl", "]"}], "\[NotEqual]", 
+        RowBox[{"Length", "[", "v", "]"}]}], ",", 
+       RowBox[{"vl", "=", "None"}]}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"lbl", "=", 
+      RowBox[{"If", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"vl", "===", "None"}], ",", 
+        RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Join", "[", 
+         RowBox[{
+          RowBox[{"{", "vls", "}"}], ",", 
+          RowBox[{"MapThread", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Text", "[", 
+              RowBox[{"#1", ",", 
+               RowBox[{"GeoPosition", "[", 
+                RowBox[{"#2", "+", "\[CapitalDelta]"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "1"}], ",", "0"}], "}"}]}], "]"}], "&"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"vl", ",", "c"}], "}"}]}], "]"}]}], "]"}]}], 
+       "\[IndentingNewLine]", "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Join", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Join", "[", 
+        RowBox[{
+         RowBox[{"{", "vs", "}"}], ",", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"GeoDisk", "[", 
+             RowBox[{
+              RowBox[{
+              "c", "\[LeftDoubleBracket]", "#1", "\[RightDoubleBracket]"}], 
+              ",", "r"}], "]"}], "&"}], ")"}], "/@", "v"}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Join", "[", 
+        RowBox[{
+         RowBox[{"{", "es", "}"}], ",", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"GeoPath", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"c", "\[LeftDoubleBracket]", 
+                RowBox[{
+                "#1", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+                "\[RightDoubleBracket]"}], ",", 
+               RowBox[{"c", "\[LeftDoubleBracket]", 
+                RowBox[{
+                "#1", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+                "\[RightDoubleBracket]"}]}], "}"}], "]"}], "&"}], ")"}], "/@",
+           "e"}]}], "]"}], ",", "\[IndentingNewLine]", "lbl"}], 
+      "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellLabel->
+  "In[181]:=",ExpressionUUID->"ca09a04a-8856-42ae-ad74-9a45b257f682"],
+
+Cell["\<\
+Radius of disk in GeoDisk function [m], that is the size of the dots \
+representing the cities.\
+\>", "Text",ExpressionUUID->"bac639ad-1077-4418-8306-0140c46b7dd0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"r", "=", 
+   RowBox[{"10", " ", 
+    SuperscriptBox["10", "3"]}]}], ";"}]], "Input",
+ CellLabel->
+  "In[191]:=",ExpressionUUID->"23b7f93c-3363-4fe0-850e-e0ae3c310453"],
+
+Cell["Drawing a map of Sweden with the links between the cities.", "Text",
+ CellChangeTimes->{{3.810381172069468*^9, 
+  3.810381205087854*^9}},ExpressionUUID->"d6bf70d1-3153-43a8-a071-\
+dcef9f336728"],
+
+Cell[BoxData[
+ RowBox[{"GeoGraphics", "[", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Polygon", "[", 
+      RowBox[{"CountryData", "[", "\"\<Sweden\>\"", "]"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"geoGraph", "[", 
+      RowBox[{
+      "v", ",", "\[GothicCapitalE]", ",", "\[DoubleStruckC]", ",", "r", ",", 
+       RowBox[{"EdgeStyle", "\[Rule]", "Blue"}], ",", 
+       RowBox[{"VertexStyle", "\[Rule]", 
+        RowBox[{"GeoStyling", "[", "Red", "]"}]}], ",", 
+       RowBox[{"VertexLabels", "\[Rule]", "city"}]}], "]"}]}], 
+    "\[IndentingNewLine]", "}"}], ",", 
+   RowBox[{"GeoBackground", "\[Rule]", "None"}], ",", 
+   RowBox[{"GeoProjection", "\[Rule]", "\"\<LambertAzimuthal\>\""}]}], 
+  "]"}]], "Input",
+ CellLabel->
+  "In[192]:=",ExpressionUUID->"5206c502-a00d-40db-905e-1e1f3fd0e596"],
+
+Cell["\<\
+Tip : Study the documentation for the function WeightedAdjacencyGraph .\
+\>", "Text",ExpressionUUID->"19c8db3a-6fb4-4948-b71b-4dd45877c10b"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ 
+ CounterBox["Section"],
+ ". Mathematical Task"
+}], "Section",ExpressionUUID->"c73576d4-1c13-40b6-a15d-6bcf798c8e7a"],
+
+Cell["Use KTH Canvas to discuss Mathematica code.", "Text",
+ CellDingbat->
+  "\[LightBulb]",ExpressionUUID->"faaf7ad7-feed-4b4b-8840-23900d7fbfe9"],
+
+Cell[CellGroupData[{
+
+Cell["Tasks", "Subsection",ExpressionUUID->"a1a940ad-d8a3-43c0-b3a4-94a4417152ec"],
+
+Cell["\<\
+a) For B-grade (provided you have grade C for project 1 and 2).\
+\>", "Text",ExpressionUUID->"1cfb86bc-cc29-4bdf-bdda-2f67354baa20"],
+
+Cell[TextData[{
+ "Study Kruskal\[CloseCurlyQuote]s algorithm for a minimal spanning tree from \
+a reliable source. Be sure to use detailed references in your explanation \
+below. You can ",
+ StyleBox["choose between two different tasks",
+  FontWeight->"Bold"],
+ ":"
+}], "Text",ExpressionUUID->"f7f6d075-581b-48b4-a0c1-cf55c8c0ebfe"],
+
+Cell[TextData[{
+ "Write your own method in Mathematica using the algorithm to produce a \
+minimal spanning tree.  Illustrate the features of your method with graph \
+examples. You are ",
+ StyleBox["expected to have insight",
+  FontWeight->"Bold"],
+ " in how the algorithm works not just the code."
+}], "ItemNumbered",ExpressionUUID->"531f45bd-c8b2-4d5c-8d39-2b8558bf5991"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Explain ",
+ StyleBox["how",
+  FontWeight->"Bold"],
+ " Kruskal\[CloseCurlyQuote]s algorithm works. Use Mathematica graph-methods \
+to illustrate your explanation with an animation. The explanation should be \
+with the focus on how the algorithm works, not your code."
+}], "ItemNumbered",ExpressionUUID->"5b4f53b8-d57b-44a2-adb2-3c0b94399c4f"],
+
+Cell[BoxData[Cell["b) For A-grade (provided you have done part a).", "Text",
+  ExpressionUUID->"b784752e-fc60-4134-85e6-77a07c297255"]], "Input",Expression\
+UUID->"b0ebb706-9cc2-4ca4-9d82-50bf90cc3d18"]
+}, Open  ]],
+
+Cell["\<\
+In the guidance section 2.2, it was shown how relations between cities can be \
+illustrated. Let us assume that each city represents a router that forwards \
+data packets to their final destination. Your task this time is to create a \
+tree that shows how data packets are routed so that each city can be reached \
+by the information flow that (this time) is based on Stockholm.\
+\>", "Text",ExpressionUUID->"3a8f40d6-78c9-4b48-a983-9171990131e1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"city", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<Abisko\>\"", ",", "\"\<Boden\>\"", ",", "\"\<Falun\>\"", ",", 
+     "\"\<Goteborg\>\"", ",", "\"\<Hoganas\>\"", ",", "\"\<Hudiksvall\>\"", 
+     ",", "\"\<Jonkoping\>\"", ",", "\"\<Kalmar\>\"", ",", "\"\<Kiruna\>\"", 
+     ",", "\"\<Lidkoping\>\"", ",", "\"\<Linkoping\>\"", ",", "\"\<Lulea\>\"",
+      ",", "\"\<Lund\>\"", ",", "\"\<Malmo\>\"", ",", "\"\<Mariestad\>\"", 
+     ",", "\"\<Ostersund\>\"", ",", "\"\<Stockholm\>\"", ",", 
+     "\"\<Strangnas\>\"", ",", "\"\<Timra\>\"", ",", "\"\<Uppsala\>\"", ",", 
+     "\"\<Umea\>\"", ",", "\"\<Varberg\>\"", ",", "\"\<Visby\>\""}], "}"}]}], 
+  ";"}]], "Input",ExpressionUUID->"9376fbcc-cfc2-4c10-9738-cb9a8431b25a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"links", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"15", ",", "18"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"13", ",", "17"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "16"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "6"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"15", ",", "11"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"19", ",", "21"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"7", ",", "8"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"19", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"7", ",", "4"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"21", ",", "17"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"17", ",", "11"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"23", ",", "11"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "7"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "17"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "20"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"13", ",", "5"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "17"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"7", ",", "22"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"15", ",", "10"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "18"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"11", ",", "16"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"17", ",", "23"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "17"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"20", ",", "6"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"11", ",", "7"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"9", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "20"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "17"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"19", ",", "17"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"7", ",", "20"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"22", ",", "4"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "7"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"15", ",", "17"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "17"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"20", ",", "5"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "15"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"11", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"9", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "10"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"5", ",", "14"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "16"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "19"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"13", ",", "8"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "23"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "10"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "13"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "16"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"15", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"20", ",", "18"}], "}"}]}], "}"}]}], ";"}]], "Input",ExpressionU\
+UID->"5a49304e-f01d-462e-bcd9-dc1de6b40201"],
+
+Cell[BoxData[
+ RowBox[{"city", "\[LeftDoubleBracket]", 
+  RowBox[{"links", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+  "\[RightDoubleBracket]"}]], "Input",ExpressionUUID->"3e4a47df-ec6b-4649-\
+92bb-092147a171bd"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Weight (cost) for the use of a link between the two cities is assumed to be \
+inversely proportional to the free capacity of the link. Suppose, for \
+example, the following available capacity:\[LineSeparator]\[LineSeparator]\t",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {"Stockholm", "\[Dash]", "G\[ODoubleDot]teborg", "25"},
+     {"Stockholm", "\[Dash]", "Lund", "30"},
+     {"G\[ODoubleDot]teborg", "\[Dash]", "Lund", "25"},
+     {"Stockholm", "\[Dash]", "Falun", "15"},
+     {"Falun", "\[Dash]", "\[CapitalODoubleDot]stersund", "15"},
+     {"\[CapitalODoubleDot]stersund", "-", "Ume\[ARing]", "15"}
+    }], TraditionalForm]],
+  CellChangeTimes->{{3.4355650869356003`*^9, 3.4355651905352*^9}, {
+    3.4355652549164*^9, 3.4355652750248003`*^9}, {3.4355653215284*^9, 
+    3.4355653279244003`*^9}, {3.435565402586*^9, 3.4355654609768*^9}, {
+    3.4355655728288*^9, 3.4355655914084*^9}, {3.4355656462111998`*^9, 
+    3.4355656699388*^9}, 3.4355673199040003`*^9},ExpressionUUID->
+  "e0b9451d-da67-439a-a589-9c75a28d1617"]
+}], "Item",
+ GridBoxOptions->{
+ GridBoxAlignment->{
+  "Columns" -> {{
+     Left}}}},ExpressionUUID->"bb5ab8dc-5dec-4e79-bb9b-94be906e28fa"],
+
+Cell["\<\
+The available capacity of the other available links to random numbers between \
+1 and 10.\
+\>", "ItemParagraph",ExpressionUUID->"b3157438-4c48-4ced-a7c0-47ef479e1885"]
+}, Open  ]],
+
+Cell["\<\
+Your solution should be optimized so that each router can be accessed with \
+minimal weight (cost). What algorithm is used (justify your answer)?\
+\>", "Item",ExpressionUUID->"2b22e0da-b2e0-4d2a-9f66-549ce9f8c121"],
+
+Cell["Illustrate your solution with the map of Sweden.", "Item",ExpressionUUID->"b531b7a2-550b-4dc1-b346-157308daefe4"],
+
+Cell["What happens if the link G\[ODoubleDot]teborg \[Dash] Lund stops \
+working?", "Item",ExpressionUUID->"7babf1c9-cc0b-4c01-9d7b-c7729a5147ed"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1920, 941},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrintingStartingPageNumber->1,
+PageHeaders->{{None, None, None}, {None, None, None}},
+PageFooters->{{None, None, None}, {None, 
+   Cell[
+    TextData[
+     StyleBox[
+      CounterBox["Page"], "PageNumber"]], "Footer"], None}},
+PageHeaderLines->{False, False},
+PageFooterLines->{False, False},
+PrintingOptions->{"FacingPages"->False,
+"FirstPageFace"->Right,
+"FirstPageFooter"->True,
+"FirstPageHeader"->False},
+TrackCellChangeTimes->False,
+SpellingDictionaries->{"CorrectWords"->{"Mathematica", "B\[ODoubleDot]iers"}},
+FrontEndVersion->"13.1 for Mac OS X ARM (64-bit) (June 16, 2022)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell["Modify the definitions below to change the default appearance of all \
+cells in a given style. \nMake modifications to any definition using commands \
+in the Format menu.", "Text"], 
+   Cell[
+    CellGroupData[{
+      Cell["Notebook Options Settings", "Section"], 
+      Cell[
+       StyleData["Notebook"], ShowCellBracket -> Automatic]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Title and Section Cells", "Section"], 
+      Cell[
+       CellGroupData[{
+         Cell["Title", "Subsection"], 
+         Cell[
+          StyleData["Title"], FontFamily -> "Arial", FontSize -> 36, 
+          FontWeight -> "Bold", FontColor -> GrayLevel[0.5]], 
+         Cell[
+          StyleData["Subtitle"], FontFamily -> "Arial", FontWeight -> "Bold"], 
+         Cell[
+          StyleData["Subsubtitle"], FontFamily -> "Arial", FontSize -> 18]}, 
+        Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell[
+         "Chapter", "Subsection", 
+          CellChangeTimes -> {{3.6182073006504073`*^9, 
+           3.6182073204926414`*^9}}], 
+         Cell[
+          StyleData["Chapter"], FontFamily -> "Arial", FontSize -> 34, 
+          FontWeight -> "Plain", FontSlant -> "Plain", 
+          FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}], 
+         Cell[
+          StyleData["Subchapter"], CellDingbat -> 
+          StyleBox["\[FilledSmallSquare]", Alignment -> Baseline, 
+            RGBColor[
+            0.09803921568627451, 0.32941176470588235`, 0.6509803921568628]], 
+          FontFamily -> "Arial", FontSize -> 28, FontWeight -> "Plain", 
+          FontSlant -> "Plain", 
+          FontVariations -> {
+           "StrikeThrough" -> False, "Underline" -> False}]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell["Section", "Subsection"], 
+         Cell[
+          StyleData["Section"], CellDingbat -> None, ShowGroupOpener -> True, 
+          FontFamily -> "Arial", FontSize -> 24, FontWeight -> "Bold", 
+          FontColor -> GrayLevel[0.5]], 
+         Cell[
+          StyleData["Subsection"], CellDingbat -> None, ShowGroupOpener -> 
+          True, CellMargins -> {{40., 3.}, {8., 12.}}, FontFamily -> "Arial", 
+          FontSize -> 18, FontWeight -> "Bold", FontColor -> GrayLevel[0.3]], 
+         Cell[
+          StyleData["Subsubsection"], CellDingbat -> None, ShowGroupOpener -> 
+          True, CellMargins -> {{53., Inherited}, {2, 10}}, FontFamily -> 
+          "Arial", FontSize -> 16, FontWeight -> "Bold", FontColor -> 
+          GrayLevel[0.]], 
+         Cell[
+          StyleData["Subsubsubsection"], CellDingbat -> None, ShowGroupOpener -> 
+          True, MenuSortingValue -> 1400, FontFamily -> "Arial Narrow", 
+          FontSize -> 14, FontWeight -> "Bold", FontSlant -> "Plain", 
+          FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}, 
+          FontColor -> GrayLevel[0]]}, Closed]]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Body Text", "Section"], 
+      Cell[
+       CellGroupData[{
+         Cell["Standard", "Subsection"], 
+         Cell[
+          StyleData["Text"], FontFamily -> "Times"], 
+         Cell[
+          StyleData["SmallText"], MenuSortingValue -> 1425, FontFamily -> 
+          "Times"]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell["Display", "Subsection"], 
+         Cell[
+          CellGroupData[{
+            Cell["Lists", "Subsubsection"], 
+            Cell[
+             StyleData["Item"], CellDingbat -> 
+             StyleBox["\[FilledCircle]", Alignment -> Baseline, 
+               GrayLevel[0.3]], FontFamily -> "Times"], 
+            Cell[
+             StyleData["ItemParagraph"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["Subitem"], CellDingbat -> 
+             StyleBox["\[FilledSmallCircle]", Alignment -> Baseline, 
+               GrayLevel[0.3]], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubitemParagraph"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["Subsubitem"], CellDingbat -> 
+             StyleBox["\[FilledSmallCircle]", Alignment -> Baseline, 
+               GrayLevel[0.5]], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubsubitemParagraph"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["ItemNumbered"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubitemNumbered"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubsubitemNumbered"], FontFamily -> "Times"]}, 
+           Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell["Templates", "Subsubsection"], 
+            Cell[
+             StyleData[
+             "SideCaptionArray", StyleDefinitions -> StyleData["Text"]], 
+             GridBoxOptions -> {
+              GridBoxAlignment -> {"Columns" -> {Left}, "Rows" -> {Center}}, 
+               GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}}], 
+            Cell[
+             StyleData[
+             "SideCaption", StyleDefinitions -> StyleData["SmallText"]]]}, 
+           Closed]]}, Closed]]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Input and Output Cells", "Section"], 
+      Cell[
+       StyleData["Input"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["InputOnly"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Code"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Output"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Message"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Print"], ShowCellBracket -> True]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Formulas and Programming", "Section"], 
+      Cell[
+       StyleData["InlineFormula"]], 
+      Cell[
+       StyleData["DisplayFormula"], FontFamily -> "Times"], 
+      Cell[
+       StyleData["DisplayFormulaNumbered"], FontFamily -> "Times"], 
+      Cell[
+       StyleData["Program"], ShowCellBracket -> True]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Citation Styles", "Section"], 
+      Cell[
+       StyleData["Reference"]]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell[
+       TextData[{"Styles for ", 
+         StyleBox["Mathematica", FontSlant -> "Italic"], 
+         " System\[Hyphen]specific Elements"}], "Section"], 
+      Cell[
+       CellGroupData[{
+         Cell["Default Box Styles", "Subsection"], 
+         Cell[
+          StyleData["Graphics"], FontFamily -> "Times"], 
+         Cell[
+          StyleData["Graphics3D"], FontFamily -> "Times"], 
+         Cell[
+          StyleData["NetworkGraphics"], FontFamily -> "Times"]}, Closed]]}, 
+     Closed]]}, Visible -> False, FrontEndVersion -> 
+  "13.1 for Mac OS X ARM (64-bit) (June 16, 2022)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"7a818a66-f320-4ce5-8cc0-f6c4479687df"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 88, 0, 81, "Title",ExpressionUUID->"c786d25d-7727-47a2-910e-861698cd9851"],
+Cell[671, 24, 371, 12, 57, "Text",ExpressionUUID->"c382ef1a-caca-486d-8027-e5a6a8532ebd"],
+Cell[CellGroupData[{
+Cell[1067, 40, 146, 4, 59, "Section",ExpressionUUID->"d9e84f50-f9fc-4194-8382-08179de8e50b"],
+Cell[1216, 46, 480, 7, 50, "Text",ExpressionUUID->"694f40f8-58c7-46c3-a93d-67e537c3213b"],
+Cell[1699, 55, 300, 6, 31, "Text",ExpressionUUID->"587a8926-683c-4a8b-bcab-334035b54a4b"],
+Cell[2002, 63, 185, 3, 31, "Text",ExpressionUUID->"bb7b6e74-d0a0-4969-b776-aab4b9953105"],
+Cell[CellGroupData[{
+Cell[2212, 70, 160, 7, 41, "Subsection",ExpressionUUID->"edbb4993-e6fd-41bc-9147-9086244e1c26"],
+Cell[2375, 79, 126, 0, 31, "Text",ExpressionUUID->"0eb3737e-e696-4313-a3ca-d6045ba32a64"],
+Cell[2504, 81, 101, 0, 28, "Item",ExpressionUUID->"1cc98e63-5883-4885-bc1c-00a7a8f93c73"],
+Cell[2608, 83, 83, 0, 28, "Item",ExpressionUUID->"5dd448b9-e66b-44d8-90f4-e27119e72424"],
+Cell[2694, 85, 121, 0, 28, "Item",ExpressionUUID->"1c1ab6bc-6ea1-4c50-b4fe-e003fb8d800a"],
+Cell[CellGroupData[{
+Cell[2840, 89, 118, 0, 28, "Item",ExpressionUUID->"ac573c7e-6d37-4d07-a793-44191a3ab0f1"],
+Cell[2961, 91, 109, 0, 24, "Subitem",ExpressionUUID->"7b1b98bf-a21e-413c-ab72-8892bf8ac154"],
+Cell[3073, 93, 93, 0, 24, "Subitem",ExpressionUUID->"3534e7e5-cb49-46f2-9184-bb8c753a1ddf"],
+Cell[3169, 95, 94, 0, 24, "Subitem",ExpressionUUID->"8f3f5897-6855-4f4c-9ca4-dbb3a4d54b60"],
+Cell[3266, 97, 91, 0, 24, "Subitem",ExpressionUUID->"ec86d333-79e5-4710-a484-682c0d4263f1"]
+}, Open  ]],
+Cell[3372, 100, 156, 2, 28, "Item",ExpressionUUID->"89226e5e-c381-4680-bd34-5ea270d2b5ed"],
+Cell[3531, 104, 176, 3, 31, "Text",ExpressionUUID->"58f14169-9159-4210-bbd6-e952a0c265a0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3744, 112, 171, 7, 41, "Subsection",ExpressionUUID->"946e15b2-89f1-4106-b08c-e0a9bb9b3e22"],
+Cell[3918, 121, 570, 9, 50, "Text",ExpressionUUID->"23689776-c4ae-4efa-af05-a5095abde497"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4525, 135, 159, 7, 41, "Subsection",ExpressionUUID->"fb44ae22-9864-4f2a-acc6-04116b33c257"],
+Cell[4687, 144, 401, 10, 31, "Text",ExpressionUUID->"2cf764b1-fcea-4b95-b0dc-11b405b87711"],
+Cell[5091, 156, 313, 4, 31, "Text",ExpressionUUID->"1f0de201-1228-44d8-b696-edbec728037d"],
+Cell[5407, 162, 226, 3, 31, "Text",ExpressionUUID->"db2ffdbf-34ab-4686-97bd-21b26394dd76"],
+Cell[5636, 167, 157, 2, 31, "Text",ExpressionUUID->"a333f128-774a-4d88-a2a4-5fc154faa1f4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5830, 174, 165, 7, 41, "Subsection",ExpressionUUID->"3fdb9388-e191-4ed9-b432-ba76ad90cff5"],
+Cell[5998, 183, 145, 2, 28, "Item",ExpressionUUID->"3c17ee64-9fa5-4ea2-880b-0a146a64773b"],
+Cell[6146, 187, 126, 0, 28, "Item",ExpressionUUID->"a4d77b66-f197-41ae-9c4e-58ca9443a699"],
+Cell[6275, 189, 205, 5, 28, "Item",ExpressionUUID->"c83aaf75-29cd-47d8-8c01-2f2b230e625f"],
+Cell[6483, 196, 175, 3, 28, "Item",ExpressionUUID->"415114e5-9148-43ad-b3aa-d80634ec7328"],
+Cell[6661, 201, 161, 3, 28, "Item",ExpressionUUID->"c7c49a48-f06c-43bd-a1bd-c317a480ad22"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6871, 210, 129, 4, 59, "Section",ExpressionUUID->"94542b99-6865-4248-8f13-8e89b820e50e"],
+Cell[CellGroupData[{
+Cell[7025, 218, 159, 7, 41, "Subsection",ExpressionUUID->"4553e957-9eed-40da-8d92-78afaa691ddd"],
+Cell[7187, 227, 106, 0, 31, "Text",ExpressionUUID->"0b7149d6-8029-4adb-8236-bcf21f1e2fe3"],
+Cell[7296, 229, 123, 0, 24, "Subitem",ExpressionUUID->"278184fd-d9da-44d7-9b42-ebccadd5ba17"],
+Cell[7422, 231, 95, 0, 24, "Subitem",ExpressionUUID->"2e15fb37-7de2-4a03-83a0-5bbcdc69a11e"],
+Cell[7520, 233, 117, 0, 24, "Subitem",ExpressionUUID->"53cc053c-22b1-483e-b6f5-e8fe5f9d3b95"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7674, 238, 173, 7, 41, "Subsection",ExpressionUUID->"99750f37-563e-447b-8b8e-d44af31cd217"],
+Cell[7850, 247, 140, 2, 31, "Text",ExpressionUUID->"557d0a2e-526f-4d52-ad22-992e9bcd4fac"],
+Cell[7993, 251, 221, 4, 30, "Input",ExpressionUUID->"83666d55-ae42-4bb9-80f0-587992cbba30"],
+Cell[8217, 257, 254, 6, 31, "Text",ExpressionUUID->"6606b3eb-9a7f-4a44-bd9a-2c6b51d2820a"],
+Cell[8474, 265, 781, 22, 52, "Input",ExpressionUUID->"d8ed8ebd-bae0-4ad5-91c4-0a1af2d6b00f"],
+Cell[9258, 289, 224, 5, 31, "Text",ExpressionUUID->"80a62418-7a1b-4cad-a447-5ed3e771872a"],
+Cell[9485, 296, 522, 13, 30, "Input",ExpressionUUID->"b7f7a639-e00d-41c4-9cc0-1a09f23b1799"],
+Cell[10010, 311, 214, 5, 31, "Text",ExpressionUUID->"08707551-be0d-4488-96f7-538cc984ae92"],
+Cell[10227, 318, 802, 20, 94, "Input",ExpressionUUID->"8bf321b0-9791-465b-807a-d50db67ca65f"],
+Cell[11032, 340, 211, 4, 30, "Input",ExpressionUUID->"e0c38d4a-0e61-4be8-8a44-41e4b5942d26"],
+Cell[11246, 346, 151, 2, 31, "Text",ExpressionUUID->"c3fccc00-730a-4f3c-9087-3d98aaf38cec"],
+Cell[11400, 350, 325, 8, 52, "Input",ExpressionUUID->"89ef92cc-6d1a-4d60-b6d3-a9755e0ac6ca"],
+Cell[11728, 360, 182, 3, 31, "Text",ExpressionUUID->"7ec7329d-7d3c-40dd-8247-02ca2f42f253"],
+Cell[11913, 365, 562, 13, 94, "Input",ExpressionUUID->"9d6bc572-79e8-42dc-99ac-b157a49c7521"],
+Cell[12478, 380, 184, 3, 31, "Text",ExpressionUUID->"2cea0918-6378-433b-9e69-1f5a8d3a68c1"],
+Cell[12665, 385, 3349, 86, 346, "Input",ExpressionUUID->"ca09a04a-8856-42ae-ad74-9a45b257f682"],
+Cell[16017, 473, 174, 3, 31, "Text",ExpressionUUID->"bac639ad-1077-4418-8306-0140c46b7dd0"],
+Cell[16194, 478, 202, 6, 30, "Input",ExpressionUUID->"23b7f93c-3363-4fe0-850e-e0ae3c310453"],
+Cell[16399, 486, 200, 3, 31, "Text",ExpressionUUID->"d6bf70d1-3153-43a8-a071-dcef9f336728"],
+Cell[16602, 491, 849, 20, 94, "Input",ExpressionUUID->"5206c502-a00d-40db-905e-1e1f3fd0e596"],
+Cell[17454, 513, 150, 2, 31, "Text",ExpressionUUID->"19c8db3a-6fb4-4948-b71b-4dd45877c10b"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17653, 521, 134, 4, 59, "Section",ExpressionUUID->"c73576d4-1c13-40b6-a15d-6bcf798c8e7a"],
+Cell[17790, 527, 147, 2, 31, "Text",ExpressionUUID->"faaf7ad7-feed-4b4b-8840-23900d7fbfe9"],
+Cell[CellGroupData[{
+Cell[17962, 533, 82, 0, 41, "Subsection",ExpressionUUID->"a1a940ad-d8a3-43c0-b3a4-94a4417152ec"],
+Cell[18047, 535, 142, 2, 31, "Text",ExpressionUUID->"1cfb86bc-cc29-4bdf-bdda-2f67354baa20"],
+Cell[18192, 539, 332, 7, 31, "Text",ExpressionUUID->"f7f6d075-581b-48b4-a0c1-cf55c8c0ebfe"],
+Cell[18527, 548, 372, 7, 28, "ItemNumbered",ExpressionUUID->"531f45bd-c8b2-4d5c-8d39-2b8558bf5991"],
+Cell[CellGroupData[{
+Cell[18924, 559, 359, 7, 28, "ItemNumbered",ExpressionUUID->"5b4f53b8-d57b-44a2-adb2-3c0b94399c4f"],
+Cell[19286, 568, 202, 2, 32, "Input",ExpressionUUID->"b0ebb706-9cc2-4ca4-9d82-50bf90cc3d18"]
+}, Open  ]],
+Cell[19503, 573, 457, 6, 50, "Text",ExpressionUUID->"3a8f40d6-78c9-4b48-a983-9171990131e1"],
+Cell[19963, 581, 753, 13, 52, "Input",ExpressionUUID->"9376fbcc-cfc2-4c10-9738-cb9a8431b25a"],
+Cell[20719, 596, 3436, 107, 73, "Input",ExpressionUUID->"5a49304e-f01d-462e-bcd9-dc1de6b40201"],
+Cell[24158, 705, 227, 4, 30, "Input",ExpressionUUID->"3e4a47df-ec6b-4649-92bb-092147a171bd"],
+Cell[CellGroupData[{
+Cell[24410, 713, 1175, 23, 172, "Item",ExpressionUUID->"bb5ab8dc-5dec-4e79-bb9b-94be906e28fa"],
+Cell[25588, 738, 177, 3, 21, "ItemParagraph",ExpressionUUID->"b3157438-4c48-4ced-a7c0-47ef479e1885"]
+}, Open  ]],
+Cell[25780, 744, 224, 3, 28, "Item",ExpressionUUID->"2b22e0da-b2e0-4d2a-9f66-549ce9f8c121"],
+Cell[26007, 749, 119, 0, 28, "Item",ExpressionUUID->"b531b7a2-550b-4dc1-b346-157308daefe4"],
+Cell[26129, 751, 146, 1, 28, "Item",ExpressionUUID->"7babf1c9-cc0b-4c01-9d7b-c7729a5147ed"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
