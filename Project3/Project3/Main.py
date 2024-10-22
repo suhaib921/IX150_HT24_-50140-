@@ -32,11 +32,6 @@ def trace_shortest_path(graph, start, target, cities):
         print(f"  {cities[u]} --> {cities[v]} (Weight: {weight:.2f})")
     print(f"\nTotal weight (inverse capacity) from {cities[start]} to {cities[target]}: {total_weight:.2f}")
 
-# Function to print the current city links
-def print_city_links(graph, cities):
-    print("\nCurrent city links (edges):")
-    for u, v, attributes in graph.edges(data=True):
-        print(f"  {cities[u]} <--> {cities[v]} (Weight: {attributes['weight']:.2f})")
         
 # Function to simulate link failure
 def simulate_link_failure(graph, city1, city2):
@@ -54,16 +49,9 @@ def simulate_link_failure(graph, city1, city2):
 
 # Function to handle link failure and re-run algorithms
 def handle_link_failure(graph, city1, city2, start_node, target_node, num_runs, cities):
-    # Print city links before link failure
-    print("\n--- City Links Before Link Failure ---")
-    print_city_links(graph, cities)
-
+   
     # Simulate link failure: city1 – city2
     simulate_link_failure(graph, city1, city2)
-
-    # Print city links after link failure
-    print("\n--- City Links After Link Failure ---")
-    print_city_links(graph, cities)
 
     # Re-run Dijkstra's algorithm after link failure
     print("\n--- Re-running Dijkstra's Algorithm after link failure ---")
@@ -109,6 +97,17 @@ def main():
 
     # Draw the graph with the calculated paths
     draw_graph(G, cities, "City Network - Shortest Paths")
+
+     # Stockholm index (assuming it's at index 16) and Abisko at index 0
+    start_node = 3  # Goteborg 
+    target_node = 12  # Lund
+
+     # Measure and run Dijkstra's algorithm
+    print("\n--- bkababm ---")
+    dijkstra_time = timeit.timeit(lambda: dijkstra_algorithm(G, start_node), number=num_runs) / num_runs
+    print(f"Dijkstra's Algorithm execution time: {dijkstra_time:.10f} seconds")
+
+    trace_shortest_path(G, start_node, target_node, cities)
 
 
     # Handle link failure and re-run algorithms
