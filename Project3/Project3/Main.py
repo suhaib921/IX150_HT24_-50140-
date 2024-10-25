@@ -8,6 +8,7 @@ from Bellman_Ford_Algorithm import bellman_ford_algorithm
 from floydwarshall_Algorithm import floyd_warshall_algorithm
 
 
+
 # Function to draw the graph
 def draw_graph(graph, cities, title):
     plt.figure(figsize=(12, 12))
@@ -60,9 +61,22 @@ def handle_link_failure(graph, city1, city2, start_node, target_node, num_runs, 
 
     # Trace the shortest path from Stockholm to Abisko after the failure
     trace_shortest_path(graph, start_node, target_node, cities)
-
-    # Draw the graph after the link failure
     draw_graph(graph, cities, "City Network - After Link Failure")
+
+
+# Function to print the shortest paths from Stockholm to all other cities
+def print_shortest_paths_from_stockholm(graph, start_node, cities, num_runs=1000):
+     # Print shortest paths from Stockholm to all other cities
+    print("\nShortest paths from Stockholm to all other cities:")
+    
+    # Get shortest paths from Stockholm to all other cities
+    distances = dijkstra_algorithm(graph, start_node)
+    for node, distance in distances.items():
+        print(f"Shortest distance from {cities[start_node]} to {cities[node]}: {distance:.2f}")
+
+    for target_node in range(len(cities)):
+        if target_node != start_node:
+            trace_shortest_path(graph, start_node, target_node, cities)
 
 
 # Main function
@@ -76,6 +90,10 @@ def main():
 
     # Number of runs for timing accuracy
     num_runs = 1000
+
+
+    # Print shortest paths from Stockholm to all other cities
+    print_shortest_paths_from_stockholm(G, start_node, cities)
 
    # Measure and run Dijkstra's algorithm
     print("\n--- Running Dijkstra's Algorithm ---")
