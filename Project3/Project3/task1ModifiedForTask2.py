@@ -1,73 +1,136 @@
 import networkx as nx
-import matplotlib.pyplot as plt
+import random
+import folium
+import os
+from geopy.geocoders import Nominatim
+from dijkstra_Algorithm import dijkstra_algorithm
+from IPython.display import IFrame
+from selenium import webdriver
 
-# Union-Find data structure for cycle detection
-class UnionFind:
-    def __init__(self, n):
-        self.parent = list(range(n))
-        self.rank = [0] * n
 
-    def find(self, u):
-        if self.parent[u] != u:
-            self.parent[u] = self.find(self.parent[u])
-        return self.parent[u]
 
-    def union(self, u, v):
-        root_u = self.find(u)
-        root_v = self.find(v)
-        if root_u != root_v:
-            if self.rank[root_u] > self.rank[root_v]:
-                self.parent[root_v] = root_u
-            elif self.rank[root_u] < self.rank[root_v]:
-                self.parent[root_u] = root_v
-            else:
-                self.parent[root_v] = root_u
-                self.rank[root_u] += 1
+save_directory = "/home/suhkth/Documents/Diskret/IX150_HT24_-50140--main/Project3/Project3"
 
-# Kruskal's algorithm to find MST
-def kruskal(n, edges):
-    edges.sort(key=lambda x: x[2])
-    uf = UnionFind(n)
-    mst = []
-    for u, v, weight in edges:
-        if uf.find(u) != uf.find(v):
-            mst.append((u, v, weight))
-            uf.union(u, v)
-    return mst
 
-# Function to create the MST graph
-def create_mst_graph():
-    edges = [
-        (0, 1, 2), (0, 3, 6),
-        (1, 2, 3), (1, 3, 8), (1, 4, 5),
-        (2, 4, 7), (3, 4, 9)
-    ]
-    n = 5
-    mst_edges = kruskal(n, edges)
+# Initialize geolocator
+geolocator = Nominatim(user_agent="sweden_city_locator")
+
+# Define cities in Sweden
+cities = ["Abisko", "Boden", "Falun", "Goteborg", "Hoganas", "Hudiksvall", "Jonkoping", 
+          "Kalmar", "Kiruna", "Lidkoping", "Linkoping", "Lulea", "Lund", "Malmo", "Mariestad", 
+          "Ostersund", "Stockholm", "Strangnas", "Timra", "Uppsala", "Umea", "Varberg", "Visby"]
+
+# Fetch coordinates for each city
+city_coordinates = {}
+for city in cities:
+    location = geolocator.geocode(city + ", Sweden")
+    if location:
+        city_coordinates[city] = (location.latitude, location.longitude)
+    else:
+        print(f"Could not find coordinates for {city}")
+
+# Define links (city connections) and some predefined capacities
+links = [
+    (15, 18), (13, 17), (3, 16), (6, 3), (18, 6), (12, 2), (15, 11), (19, 21), (7, 8),
+    (19, 2), (7, 4), (21, 17), (17, 11), (23, 11), (10, 7), (16, 17), (10, 20),
+    (13, 5), (3, 17), (7, 22), (15, 10), (16, 18), (11, 16), (17, 23), (18, 17),
+    (20, 6), (11, 7), (9, 2), (3, 20), (4, 17), (19, 17), (7, 20), (22, 4), (14, 7),
+    (15, 17), (6, 17), (20, 5), (16, 15), (11, 3), (9, 1), (4, 10), (5, 14), (6, 16),
+    (16, 19), (13, 8), (8, 23), (16, 10), (4, 13), (2, 16), (15, 3), (20, 18)
+]
+
+predefined_capacities = {
+    ('Stockholm', 'Goteborg'): 25,
+    ('Stockholm', 'Lund'): 30,
+    ('Goteborg', 'Lund'): 25,
+    ('Stockholm', 'Falun'): 15,
+    ('Falun', 'Ostersund'): 15,
+    ('Ostersund', 'Umea'): 15
+}
+
+# Calculate inverse capacities (weights) for links
+def calculate_inverse_capacity(links, predefined_capacities):
+    weighted_links = []
+    for link in links:
+        city1_index, city2_index = link
+        city1 = cities[city1_index - 1]  # Adjust to 1-based indexing
+        city2 = cities[city2_index - 1]
+        
+        # Use predefined capacity if available, otherwise assign a random capacity
+        if (city1, city2) in predefined_capacities:
+            capacity = predefined_capacities[(city1, city2)]
+        elif (city2, city1) in predefined_capacities:
+            capacity = predefined_capacities[(city2, city1)]
+        else:
+            capacity = random.randint(1, 10)  # Random capacity for undefined links
+        
+        weight = 1 / capacity  # Calculate weight as the inverse of capacity
+        weighted_links.append((city1_index - 1, city2_index - 1, weight))
     
+    return weighted_links
+
+# Create a graph with weighted edges based on the capacities
+def create_graph_with_weights():
     G = nx.Graph()
-    G.add_weighted_edges_from(edges)
+    G.add_nodes_from(range(len(cities)))
     
-    # Create MST graph
-    MST = nx.Graph()
-    MST.add_weighted_edges_from(mst_edges)
+    weighted_links = calculate_inverse_capacity(links, predefined_capacities)
     
-    return G, MST
+    for city1, city2, weight in weighted_links:
+        G.add_edge(city1, city2, weight=weight)
 
-# Testing the MST creation
-if __name__ == "__main__":
-    G, MST = create_mst_graph()
-    pos = nx.spring_layout(G)
-    plt.figure(figsize=(8, 6))
-    nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=700, font_size=12)
-    edge_labels = nx.get_edge_attributes(G, 'weight')
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
-    plt.title("Original Graph with Weights")
-    plt.show()
+    return G
 
-    plt.figure(figsize=(8, 6))
-    nx.draw(MST, pos, with_labels=True, node_color='lightgreen', node_size=700, font_size=12)
-    mst_edge_labels = nx.get_edge_attributes(MST, 'weight')
-    nx.draw_networkx_edge_labels(MST, pos, edge_labels=mst_edge_labels)
-    plt.title("Minimum Spanning Tree (MST)")
-    plt.show()
+# Create the graph
+G = create_graph_with_weights()
+
+# Run Dijkstra's algorithm and print results
+start_node_index = cities.index("Stockholm")  # Convert start_node name to index
+shortest_paths = dijkstra_algorithm(G, start_node_index)
+
+# Print distances from Stockholm to each city
+for city_index, distance in shortest_paths.items():
+    print(f"Distance from Stockholm to {cities[city_index]}: {distance:.3f}")
+
+# Display the map with cities and links
+sweden_map = folium.Map(location=[63.0, 18.0], zoom_start=5)
+for city, coords in city_coordinates.items():
+    folium.Marker(location=coords, popup=city).add_to(sweden_map)
+
+for link in links:
+    city1 = cities[link[0] - 1]
+    city2 = cities[link[1] - 1]
+    if city1 in city_coordinates and city2 in city_coordinates:
+        folium.PolyLine(
+            locations=[city_coordinates[city1], city_coordinates[city2]],
+            color='blue',
+            weight=2.5,
+            opacity=0.5
+        ).add_to(sweden_map)
+
+# Save HTML file in specified directory
+html_file = os.path.join(save_directory, 'sweden_cities_map.html')
+sweden_map.save(html_file)
+
+# Get the absolute path to the HTML file
+html_path = 'file://' + html_file
+
+# Function to save map as PNG
+def save_map_as_png(html_path, png_path):
+    # Set up Selenium WebDriver
+    driver = webdriver.Chrome()
+    driver.get(html_path)
+    
+    # Adjust the window size and take a screenshot
+    driver.set_window_size(1024, 1024)
+    driver.save_screenshot(png_path)
+    
+    driver.quit()
+    
+    # Optionally, show the image
+    img = Image.open(png_path)
+    img.show()
+
+# Save PNG file in specified directory
+png_file = os.path.join(save_directory, 'sweden_cities_map.png')
+save_map_as_png(html_path, png_file)
